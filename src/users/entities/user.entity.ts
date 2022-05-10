@@ -25,7 +25,7 @@ class User {
     )
     public avatar?: PublicFiles;
 
-    @Column()
+    @Column({ nullable: true })
     public role: string;
 
     @Column()
