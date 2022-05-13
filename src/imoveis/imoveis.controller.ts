@@ -5,11 +5,11 @@ import { UpdateImoveiDto } from './dto/update-imovei.dto';
 import { TodosImoveisDto } from './dto/todos-imoveis.dto';
 import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Imóveis')
 @Controller('imoveis')
 export class ImoveisController {
   constructor(private readonly imoveisService: ImoveisService) { }
 
-  @ApiTags('Imóveis')
   @Post()
   create(@Body() createImoveiDto: CreateImoveiDto) {
     return this.imoveisService.create(createImoveiDto);
