@@ -37,9 +37,10 @@ export class ImoveisService {
 
   findOne(id: number) {
     const data = { "codigoImovel": id }
-    return this.http.post('https://api.imoview.com.br/Imovel/RetornarDetalhesImovelDisponivel', data, { headers: headerRequest }).pipe(
-      map(res => res.data)
-    )
+    return this.http.post('https://api.imoview.com.br/Imovel/RetornarDetalhesImovelDisponivel', data, { headers: headerRequest })
+      .toPromise()
+      .then(res => res.data)
+      .catch(error => error)
   }
 
   update(id: number, updateImoveiDto: UpdateImoveiDto) {
