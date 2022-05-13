@@ -8,6 +8,7 @@ import { UsersModule } from './users/users.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { FilesModule } from './files/files.module';
 import { PostsModule } from './posts/posts.module';
+import { ImoveisModule } from './imoveis/imoveis.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -30,7 +31,8 @@ import { PostsModule } from './posts/posts.module';
     UsersModule,
     AuthenticationModule,
     FilesModule,
-    PostsModule
+    PostsModule,
+    ImoveisModule
   ],
   controllers: [AppController],
   providers: [AppService],
