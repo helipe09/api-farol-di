@@ -2,14 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { CreateImoveiDto } from './dto/create-imovei.dto';
 import { UpdateImoveiDto } from './dto/update-imovei.dto';
-import { config, map } from 'rxjs';
+import { catchError, config, map } from 'rxjs';
 import { ConfigService } from '@nestjs/config';
 
 const headerRequest = {
   'Content-Type': 'application/json',
   'chave': 'xkQRh4jCVBD2itxUrU6MjWionfGHB0K0qIpEbUX0M0o=',
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': '*'
 }
 
 // const data = { "finalidade": "1", "numeroPagina": "2", "numeroRegistros": "2" }
@@ -30,7 +28,7 @@ export class ImoveisService {
   }
 
   async findAll(todosImoveisDto) {
-    return this.http.post('https://api.imoview.com.br/Imovel/RetornarImoveisDisponiveis', todosImoveisDto).pipe(
+    return this.http.post('https://api.imoview.com.br/Imovel/RetornarImoveisDisponiveis', todosImoveisDto, { headers: headerRequest }).pipe(
       map(res => res.data)
     )
   }
