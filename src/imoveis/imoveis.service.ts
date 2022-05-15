@@ -30,7 +30,7 @@ export class ImoveisService {
   }
 
   async findAll(todosImoveisDto) {
-    return this.http.post('https://api.imoview.com.br/Imovel/RetornarImoveisDisponiveis', todosImoveisDto, { headers: headerRequest }).pipe(
+    return this.http.post('https://api.imoview.com.br/Imovel/RetornarImoveisDisponiveis', todosImoveisDto).pipe(
       map(res => res.data)
     )
   }
