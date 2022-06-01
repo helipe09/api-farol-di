@@ -8,7 +8,7 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   var cors = require('cors');
-  app.use(cookieParser(), cors({ credentials: true, origin: 'http://localhost:4200' }))
+  app.use(cookieParser(), cors({ credentials: true, origin: 'https://farol-di.web.app/' }))
 
   const configService = app.get(ConfigService);
   config.update({
