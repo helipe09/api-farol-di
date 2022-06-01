@@ -5,7 +5,7 @@ import { ImoveisController } from './imoveis.controller';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [HttpModule, ConfigModule],
+  imports: [HttpModule, ConfigModule,],
   controllers: [ImoveisController],
   providers: [ImoveisService]
 })

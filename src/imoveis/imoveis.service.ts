@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { CreateImoveiDto } from './dto/create-imovei.dto';
 import { UpdateImoveiDto } from './dto/update-imovei.dto';
@@ -14,7 +14,10 @@ const headerRequest = {
 
 @Injectable()
 export class ImoveisService {
-  constructor(private readonly http: HttpService, private readonly configService: ConfigService) { }
+  constructor(
+    private readonly http: HttpService,
+    private readonly configService: ConfigService
+  ) { }
 
   headerRequest = {
     'Content-Type': 'application/json',
@@ -33,12 +36,18 @@ export class ImoveisService {
     )
   }
 
-  findOne(id: number) {
+  async findOne(id: number) {
     const data = { "codigoImovel": id }
     return this.http.post('https://api.imoview.com.br/Imovel/RetornarDetalhesImovelDisponivel', data, { headers: headerRequest })
       .toPromise()
       .then(res => res.data)
       .catch(error => error)
+  }
+
+  async allNeigh() {
+    return this.http.get('https://api.imoview.com.br/Imovel/RetornarBairrosDisponiveis', { headers: headerRequest }).pipe(
+      map(res => res.data)
+    )
   }
 
   update(id: number, updateImoveiDto: UpdateImoveiDto) {

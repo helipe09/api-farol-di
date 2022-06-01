@@ -21,9 +21,14 @@ export class ImoveisController {
     return this.imoveisService.findAll(todosImoveisDto)
   }
 
-  @Get(':id')
+  @Get('single/:id')
   findOne(@Param('id') id: string) {
     return this.imoveisService.findOne(+id);
+  }
+
+  @Get('bairros')
+  allNeigh() {
+    return this.imoveisService.allNeigh()
   }
 
   @Patch(':id')
