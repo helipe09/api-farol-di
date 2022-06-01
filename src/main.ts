@@ -8,6 +8,7 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   var cors = require('cors');
+  app.enableCors()
   app.use(cookieParser(), cors({ credentials: true, origin: 'https://farol-di.web.app' }))
 
   const configService = app.get(ConfigService);
