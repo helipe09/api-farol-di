@@ -24,6 +24,8 @@ export class PermutaController {
   // @UseInterceptors(FileInterceptor('file'))
   // async addPhoto()
 
+  //
+
   @Get()
   findAll() {
     return this.permutaService.findAll();
