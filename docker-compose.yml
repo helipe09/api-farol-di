@@ -1,31 +1,34 @@
-version: "3"
+version: '3'
+
 services:
-  postgres:
-    container_name: api-farol-di-postgres
-    image: postgres:latest
+  api:
+    build:
+      context: .
+      dockerfile: api.Dockerfile
     ports:
-    - "5432:5432"
+      - '80:3000'
+    container_name: api-farol-di
+    restart: always
     volumes:
-    - /Users/admin/Documents/data/postgres:/data/postgres
+      - api-logs:/usr/src/node-api/logs:rw
     env_file:
     - docker.env
-    networks:
-    - postgres
+    depends_on:
+      - pgsql
 
-  # pgadmin:
-  #   links:
-  #   - postgres:postgres
-  #   container_name: pgadmin
-  #   image: dpage/pgadmin4
-  #   ports:
-  #   - "8080:80"
-  #   volumes:
-  #   - /Users/admin/Documents/data/pgadmin:/root/.pgadmin
-  #   env_file:
-  #   - docker.env
-  #   networks:
-  #   - postgres
+  pgsql:
+    image: postgres:alpine
+    ports:
+      - '5432:5432'
+    container_name: 'pgsql'
+    restart: always
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: api-farol-di
 
-networks:
-  postgres:
-    driver: bridge
+volumes:
+  api-logs:
+  pg-data:
