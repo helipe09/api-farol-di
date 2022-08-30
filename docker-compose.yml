@@ -13,22 +13,22 @@ services:
       - api-logs:/usr/src/node-api/logs:rw
     env_file:
     - docker.env
-    depends_on:
-      - pgsql
+    # depends_on:
+    #   - pgsqlfarol
 
-  pgsql:
-    image: postgres:alpine
-    ports:
-      - '5432:5432'
-    container_name: 'pgsql'
-    restart: always
-    volumes:
-      - pg-data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
-      POSTGRES_DB: api-farol-di
+  # pgsql:
+  #   image: postgres:alpine
+  #   ports:
+  #     - '5432:5432'
+  #   container_name: 'pgsqlfarol'
+  #   restart: always
+  #   volumes:
+  #     - pg-data:/var/lib/postgresql/data
+  #   environment:
+  #     POSTGRES_USER: admin
+  #     POSTGRES_PASSWORD: admin
+  #     POSTGRES_DB: api-farol-di
 
 volumes:
   api-logs:
-  pg-data:
+  # pg-data:
