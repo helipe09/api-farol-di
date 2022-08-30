@@ -9,6 +9,9 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { FilesModule } from './files/files.module';
 import { PostsModule } from './posts/posts.module';
 import { ImoveisModule } from './imoveis/imoveis.module';
+import { SendgridModule } from './sendgrid/sendgrid/sendgrid.module';
+import { EmailModule } from './email/email.module';
+import { PermutaModule } from './permuta/permuta.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -27,12 +30,15 @@ import { ImoveisModule } from './imoveis/imoveis.module';
       AWS_PUBLIC_BUCKET_NAME: Joi.string().required(),
     })
   }),
+    SendgridModule,
     DatabaseModule,
     UsersModule,
     AuthenticationModule,
     FilesModule,
     PostsModule,
-    ImoveisModule
+    ImoveisModule,
+    EmailModule,
+    PermutaModule,
   ],
   controllers: [AppController],
   providers: [AppService],

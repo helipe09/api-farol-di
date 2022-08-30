@@ -14,7 +14,7 @@ export class RegisterDto {
     role: string;
 
     @ApiProperty()
-    unity: string;
+    local: string;
 
     @ApiProperty()
     password: string;

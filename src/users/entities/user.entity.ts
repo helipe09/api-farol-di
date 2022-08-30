@@ -1,5 +1,7 @@
+import { Exclude } from 'class-transformer';
 import PublicFiles from 'src/files/publicFiles.entity';
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Permuta } from 'src/permuta/entities/permuta.entity';
+import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
 class User {
@@ -28,8 +30,15 @@ class User {
     @Column({ nullable: true })
     public role: string;
 
+    @Column({ nullable: true })
+    public local: string;
+
+    @Exclude({ toPlainOnly: true })
     @Column()
     public password: string;
+
+    @OneToMany(() => Permuta, permuta => permuta.created_by, { eager: false, onDelete: 'CASCADE' })
+    permutas: Permuta[]
 
     @CreateDateColumn()
     createdAt: Date;
