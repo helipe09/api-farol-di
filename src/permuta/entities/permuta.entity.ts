@@ -20,7 +20,7 @@ export class Permuta {
     public status: string;
 
     @JoinColumn()
-    @ManyToOne(() => User, user => user.permutas, { eager: true, onDelete: 'CASCADE' })
+    @ManyToOne(() => User, user => user.permutas, { eager: false, onDelete: 'CASCADE' })
     created_by: User
 
     @JoinColumn()

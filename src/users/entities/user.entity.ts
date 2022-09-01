@@ -34,7 +34,7 @@ class User {
     public local: string;
 
     @Exclude({ toPlainOnly: true })
-    @Column()
+    @Column({ nullable: true })
     public password: string;
 
     @OneToMany(() => Permuta, permuta => permuta.created_by, { eager: false, onDelete: 'CASCADE' })

@@ -30,4 +30,12 @@ export class FilesService {
         await this.publicFilesRepository.save(newFile);
         return newFile;
     }
+
+    async updateFile(id: any, permuta: any) {
+        const publicFile = await this.publicFilesRepository.findOneBy(id)
+        await this.publicFilesRepository.update(id, {
+            ...publicFile,
+            permuta
+        })
+    }
 }

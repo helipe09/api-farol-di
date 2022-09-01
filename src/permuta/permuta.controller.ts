@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { PermutaService } from './permuta.service';
 import { CreatePermutaDto } from './dto/create-permuta.dto';
 import { UpdatePermutaDto } from './dto/update-permuta.dto';
@@ -20,11 +20,22 @@ export class PermutaController {
     return this.permutaService.findTypeAndStatus(params)
   }
 
-  // @Post('photo')
-  // @UseInterceptors(FileInterceptor('file'))
-  // async addPhoto()
+  @Get('my/:id')
+  findMyPermutas(@Param('id') id: any) {
 
-  //
+  }
+
+  @Get('status/:status')
+  getPermutasPublicadas(@Param('status') status: any) {
+    return this.permutaService.getPermutasPublicadas(status)
+  }
+
+  @Post('photo/:id')
+  @UseInterceptors(FileInterceptor('file'))
+  async addPhoto(@Param('id') id: any, @UploadedFile() file: Express.Multer.File) {
+    return this.permutaService.addPhoto(id, file.buffer, file.originalname)
+  }
+
 
   @Get()
   findAll() {
