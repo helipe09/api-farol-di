@@ -13,6 +13,10 @@ services:
       - api-logs:/usr/src/node-api/logs:rw
     env_file:
     - docker.env
+    networks:
+      - postgres
+    links:
+      - postgres:postgres
     # depends_on:
     #   - pgsqlfarol
 
