@@ -13,7 +13,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
                 port: configService.get('POSTGRES_PORT') || 5432,
                 username: configService.get('POSTGRES_USER') || 'admin',
                 password: configService.get('POSTGRES_PASSWORD') || 'admin',
-                database: configService.get('POSTGRES_DB') || 'api-farol-di',
+                database: configService.get('POSTGRES_DB') || 'api-farol-di-postgres',
                 entities: [__dirname + '/../**/*.entity.{js,ts}'],
                 synchronize: true,
                 // ssl: { rejectUnauthorized: false },
