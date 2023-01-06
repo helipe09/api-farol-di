@@ -8,7 +8,7 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   var cors = require('cors');
-  app.use(cookieParser(), cors({ credentials: true, origin: true, methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS', }))
+  app.use(cookieParser(), cors({ credentials: true, origin: '*', methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS', }))
 
   const configService = app.get(ConfigService);
   config.update({
