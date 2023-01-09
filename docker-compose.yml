@@ -1,35 +1,40 @@
 version: '3'
-services:
-#   api:
-#     build:
-#       context: .
-#       dockerfile: api.Dockerfile
-#     ports:
-#       - '3000:3000'
-#     container_name: farol-di-api
-#     restart: always
-#     volumes:
-#       - api-logs:/usr/src/node-api/logs:rw
-#     env_file:
-#     - docker.env
-    # depends_on:
-    #   - db
 
-  db:
-    image: postgres:alpine
+services:
+  api:
+    build:
+      context: .
+      dockerfile: api.Dockerfile
     ports:
-      - '5432:5432'
-    container_name: db_farol
+      - '80:3000'
+    container_name: api
     restart: always
     volumes:
-      - pg-data:/var/lib/postgresql/data
+      - api-logs:/usr/src/node-api/logs:rw
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
-      POSTGRES_DB: api-farol-di
+      - NODE_ENV=development
+      - SEND_GRID_ACCESSS_KEY=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
+      - POSTGRES_HOST=db-farol-di.croynvd2hw6e.us-east-1.rds.amazonaws.com
+      - POSTGRES_USER=dev_node
+      - DB_USERNAME=dev-souvjobs
+      - POSTGRES_PASSWORD=Fender0913
+      - POSTGRES_DB=dbfaroldi
+    depends_on:
+      - pgsql
 
-
+  # pgsql:
+  #   image: postgres:alpine
+  #   ports:
+  #     - '5432:5432'
+  #   container_name: 'pgsql'
+  #   restart: always
+  #   volumes:
+  #     - pg-data:/var/lib/postgresql/data
+  #   environment:
+  #     POSTGRES_USER: dev-souvjobs
+  #     POSTGRES_PASSWORD: nOpMSlzXcTSY61Tm
+  #     POSTGRES_DB: souvjobs-api
 
 volumes:
   api-logs:
-  pg-data:
+  # pg-data:
